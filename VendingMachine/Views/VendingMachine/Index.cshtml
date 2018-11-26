@@ -1,0 +1,107 @@
+﻿@model VendingMachine.Models.VendingMachineViewModel
+
+@{ Layout = null; }
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/vendingMachine.js"></script>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Coffee Vending Machine App</title>
+
+  </head>
+
+  <body>
+
+    <div><h2>Welcome to the Coffee Vending Machine App!</h2></div>
+
+    <div>Remaining Amount: $<span id="remainingAmount">@Model.RemainingAmount</span></div>
+
+    <br />
+
+    <div>
+
+      Please select your coffee size:
+
+      <select id="size">
+        @foreach (var coffee in Model.Coffees)
+        {
+            <option value="@coffee.Cost">@coffee.Size</option>
+        }
+      </select>
+
+    </div>
+
+    <br />
+
+    <div>
+
+      How many sugars would you like?
+
+      <select id="sugars">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+    </div>
+
+    <br />
+
+    <div>
+
+      How many creamers would you like?
+
+      <select id="creamers">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+    </div>
+
+    <br />
+
+    <div>
+
+      Select money to add:
+
+      <select id="increment">
+        @foreach (var increment in Model.Increments)
+        {
+            <option value="@increment">$@increment.ToString("n2")</option>
+        }
+      </select>
+
+      <input id="btnAddMoney" type="button" value="Add Money" onclick="AddMoney();" />
+
+    </div>
+
+    <br />
+
+    <div>
+
+      <div id="coffeeList"></div>
+
+    </div>
+
+    <br />
+
+    <div>
+
+      <input id="btnDispenseCoffee" type="button" value="Dispense Coffee" onclick="DispenseCoffee();" />
+      <input id="btnAddCoffee" type="button" value="Add Coffee" onclick="AddCoffee();" />
+      <input id="btnDispenseChange" type="button" value="Dispense Change" onclick="DispenseChange();" />
+
+    </div>
+
+  </body>
+
+</html>
